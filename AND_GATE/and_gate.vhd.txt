@@ -40,6 +40,6 @@ end and;
 architecture Behavioral of and is
 
 begin
-
+Y<=A AND B;
 
 end Behavioral;
