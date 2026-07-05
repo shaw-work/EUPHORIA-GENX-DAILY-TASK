@@ -21,7 +21,8 @@
 
 
 module and_gate(
-    input B,
+    input B,A
     output Y
     );
+    assign Y<-A and B;
 endmodule
