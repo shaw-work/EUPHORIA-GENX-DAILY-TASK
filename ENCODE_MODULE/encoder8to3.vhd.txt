@@ -1,0 +1,27 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity encoder8to3 is
+    Port (
+        D : in  STD_LOGIC_VECTOR(7 downto 0);
+        Y : out STD_LOGIC_VECTOR(2 downto 0)
+    );
+end encoder8to3;
+
+architecture Behavioral of encoder8to3 is
+begin
+    process(D)
+    begin
+        case D is
+            when "00000001" => Y <= "000"; -- D0
+            when "00000010" => Y <= "001"; -- D1
+            when "00000100" => Y <= "010"; -- D2
+            when "00001000" => Y <= "011"; -- D3
+            when "00010000" => Y <= "100"; -- D4
+            when "00100000" => Y <= "101"; -- D5
+            when "01000000" => Y <= "110"; -- D6
+            when "10000000" => Y <= "111"; -- D7
+            when others     => Y <= "000";
+        end case;
+    end process;
+end Behavioral;
