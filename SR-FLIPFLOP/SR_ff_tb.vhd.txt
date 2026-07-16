@@ -1,0 +1,70 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity sr_ff_tb is
+end sr_ff_tb;
+
+architecture Behavioral of sr_ff_tb is
+
+    component sr_ff
+        Port (
+            clk : in STD_LOGIC;
+            S   : in STD_LOGIC;
+            R   : in STD_LOGIC;
+            Q   : out STD_LOGIC
+        );
+    end component;
+
+    signal clk : STD_LOGIC := '0';
+    signal S   : STD_LOGIC := '0';
+    signal R   : STD_LOGIC := '0';
+    signal Q   : STD_LOGIC;
+
+begin
+
+    uut: sr_ff
+        port map (
+            clk => clk,
+            S   => S,
+            R   => R,
+            Q   => Q
+        );
+
+    -- Clock Generation
+    clk_process : process
+    begin
+        while true loop
+            clk <= '0';
+            wait for 20 ns;
+            clk <= '1';
+            wait for 5 ns;
+        end loop;
+    end process;
+
+    -- Test Cases
+    stim_proc : process
+    begin
+        -- Hold
+        S <= '0'; R <= '0';
+        wait for 10 ns;
+
+        -- Set
+        S <= '1'; R <= '0';
+        wait for 10 ns;
+
+        -- Hold
+        S <= '0'; R <= '0';
+        wait for 10 ns;
+
+        -- Reset
+        S <= '0'; R <= '1';
+        wait for 10 ns;
+
+        -- Invalid
+        S <= '1'; R <= '1';
+        wait for 10 ns;
+
+        wait;
+    end process;
+
+end Behavioral;
