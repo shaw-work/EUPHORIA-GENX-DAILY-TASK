@@ -1,0 +1,59 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity dff_tb is
+end dff_tb;
+
+architecture Behavioral of dff_tb is
+
+    component dff
+        Port (
+            clk : in STD_LOGIC;
+            d   : in STD_LOGIC;
+            q   : out STD_LOGIC
+        );
+    end component;
+
+    signal clk : STD_LOGIC := '0';
+    signal d   : STD_LOGIC := '0';
+    signal q   : STD_LOGIC;
+
+begin
+
+    uut: dff
+        port map (
+            clk => clk,
+            d   => d,
+            q   => q
+        );
+
+    -- Clock Generation (10 ns period)
+    clk_process : process
+    begin
+        while true loop
+            clk <= '0';
+            wait for 5 ns;
+            clk <= '1';
+            wait for 5 ns;
+        end loop;
+    end process;
+
+    -- Stimulus
+    stim_proc : process
+    begin
+        d <= '0';
+        wait for 10 ns;
+
+        d <= '1';
+        wait for 10 ns;
+
+        d <= '0';
+        wait for 10 ns;
+
+        d <= '1';
+        wait for 10 ns;
+
+        wait;
+    end process;
+
+end Behavioral;
