@@ -1,0 +1,58 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date: 15.06.2026 12:20:41
+-- Design Name: 
+-- Module Name: fa - Behavioral
+-- Project Name: 
+-- Target Devices: 
+-- Tool Versions: 
+-- Description: 
+-- 
+-- Dependencies: 
+-- 
+-- Revision:
+-- Revision 0.01 - File Created
+-- Additional Comments:
+-- 
+----------------------------------------------------------------------------------
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity fa is
+    Port ( Ain : in STD_LOGIC;
+           Bin : in STD_LOGIC;
+           Cin : in STD_LOGIC;
+           Sum : out STD_LOGIC;
+           Carry : out STD_LOGIC);
+end fa;
+
+architecture Behavioral of fa is
+component ha is
+Port(
+A: in STD_LOGIC;
+B: in STD_LOGIC;
+S: out STD_LOGIC;
+C:out STD_LOGIC);
+end component;
+signal x,y:STD_LOGIC_VECTOR(1 downto 0);
+
+
+begin
+HA_0:HA port map(Ain,Bin,x(0),y(0));
+HA_1:HA port map(x(0),Cin,x(1),y(1));
+Sum<=x(1);
+Carry<=y(0) or y(1);
+end Behavioral;

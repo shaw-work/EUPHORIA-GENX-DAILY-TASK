@@ -1,0 +1,76 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date: 15.06.2026 12:33:44
+-- Design Name: 
+-- Module Name: fa_tb - Behavioral
+-- Project Name: 
+-- Target Devices: 
+-- Tool Versions: 
+-- Description: 
+-- 
+-- Dependencies: 
+-- 
+-- Revision:
+-- Revision 0.01 - File Created
+-- Additional Comments:
+-- 
+----------------------------------------------------------------------------------
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity fa_tb is
+--  Port ( );
+end fa_tb;
+
+architecture Behavioral of fa_tb is
+component fa is
+ Port ( Ain : in STD_LOGIC;
+           Bin : in STD_LOGIC;
+           Cin : in STD_LOGIC;
+           Sum : out STD_LOGIC;
+           Carry : out STD_LOGIC);
+           end component;
+           signal Ain,Bin,cin:STD_LOGIC:='0';
+           signal SUm,Carry:STD_LOGIC;
+begin
+UUT: fa
+port map(
+Ain=>Ain,
+Bin=>Bin,
+Cin=>Cin,
+Sum=>Sum,
+Carry=>Carry);
+process
+begin
+Ain<='0';Bin<='0';Cin<='0';
+wait for 10ns;
+Ain<='0';Bin<='0';Cin<='1';
+wait for 10ns;
+Ain<='0';Bin<='1';Cin<='0';
+wait for 10ns;
+Ain<='0';Bin<='1';Cin<='1';
+wait for 10ns;
+Ain<='1';Bin<='0';Cin<='0';
+wait for 10ns;
+Ain<='1';Bin<='0';Cin<='1';
+wait for 10ns;
+Ain<='1';Bin<='1';Cin<='0';
+wait for 10ns;
+Ain<='1';Bin<='1';Cin<='1';
+wait for 10ns;
+wait;
+end process;
+end Behavioral;
