@@ -1,0 +1,65 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date: 15.06.2026 13:02:47
+-- Design Name: 
+-- Module Name: fs - Behavioral
+-- Project Name: 
+-- Target Devices: 
+-- Tool Versions: 
+-- Description: 
+-- 
+-- Dependencies: 
+-- 
+-- Revision:
+-- Revision 0.01 - File Created
+-- Additional Comments:
+-- 
+----------------------------------------------------------------------------------
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity fs is
+    Port ( A : in STD_LOGIC;
+           B : in STD_LOGIC;
+           Bin : in STD_LOGIC;
+           D : out STD_LOGIC;
+           Bout : out STD_LOGIC);
+end fs;
+
+architecture Behavioral of fs is
+component hs is
+ Port ( A : in STD_LOGIC;
+           B : in STD_LOGIC;
+           D : out STD_LOGIC;
+           Borrow : out STD_LOGIC);
+           end component;
+           signal D1,B1,B2:STD_LOGIC;
+begin
+hs1: hs 
+port map(
+        A=>A,
+        B=>B,
+        D=>D1,
+        Borrow=>B1);
+        hs2: hs 
+port map(
+        A=>D1,
+        B=>Bin,
+        D=>D,
+        Borrow=>B2);
+        Bout<= B1 or B2;
+
+end Behavioral;
