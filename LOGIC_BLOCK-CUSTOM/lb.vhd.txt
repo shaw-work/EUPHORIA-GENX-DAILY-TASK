@@ -1,0 +1,71 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date: 15.06.2026 13:30:36
+-- Design Name: 
+-- Module Name: lb - Behavioral
+-- Project Name: 
+-- Target Devices: 
+-- Tool Versions: 
+-- Description: 
+-- 
+-- Dependencies: 
+-- 
+-- Revision:
+-- Revision 0.01 - File Created
+-- Additional Comments:
+-- 
+----------------------------------------------------------------------------------
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity lb is
+    Port ( A : in STD_LOGIC_VECTOR (3 downto 0);
+           B : in STD_LOGIC_VECTOR (3 downto 0);
+           S : in STD_LOGIC_VECTOR (1 downto 0);
+           Y : out STD_LOGIC_VECTOR (3 downto 0));
+end lb;
+
+architecture Behavioral of lb is
+component andgate
+Port ( A : in STD_LOGIC;
+           B : in STD_LOGIC;
+           Y : out STD_LOGIC);
+           end component;
+ component orgate
+ Port(A : in STD_LOGIC;
+           B : in STD_LOGIC;
+           Y : out STD_LOGIC);
+end component;
+signal andout,orout:STD_LOGIC_VECTOR(3 downto 0);
+
+begin
+A0: andgate port map(A(0),B(0),andout(0));
+A1: andgate port map(A(1),B(1),andout(1));
+A2: andgate port map(A(2),B(2),andout(2));
+A3: andgate port map(A(3),B(3),andout(3));
+or0: orgate port map(A(0),B(0),orout(0));
+or1: orgate port map(A(1),B(1),orout(1));
+or2: orgate port map(A(2),B(2),orout(2));
+or3: orgate port map(A(3),B(3),orout(3));
+process(S,andout,orout)
+begin
+    case S is
+        when "00"=>Y<=andout;
+        when "01"=> Y<=orout;
+        when others=>Y<="0000";
+        end case;
+        end process;
+end Behavioral;
