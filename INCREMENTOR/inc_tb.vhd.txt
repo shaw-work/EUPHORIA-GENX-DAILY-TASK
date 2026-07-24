@@ -1,0 +1,58 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date: 17.06.2026 13:32:10
+-- Design Name: 
+-- Module Name: incrementor_tb - Behavioral
+-- Project Name: 
+-- Target Devices: 
+-- Tool Versions: 
+-- Description: 
+-- 
+-- Dependencies: 
+-- 
+-- Revision:
+-- Revision 0.01 - File Created
+-- Additional Comments:
+-- 
+----------------------------------------------------------------------------------
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity incrementor_tb is
+--  Port ( );
+end incrementor_tb;
+
+architecture Behavioral of incrementor_tb is
+component incrementor is 
+Port ( A : in STD_LOGIC_VECTOR (3 downto 0);
+           Y : out STD_LOGIC_VECTOR (3 downto 0);
+           Cout : out STD_LOGIC);
+           end component;
+           signal A: STD_LogIC_VECTOR(3 downto 0);
+           signal Y: STD_LOgIC_VECTOR(3 downto 0);
+           signal Cout: STD_LOGIC;
+begin
+UUT: incrementor port map(
+A=>A,
+y=>Y,cout=>Cout);
+process
+begin
+A<="0000";wait for 10ns;
+A<="0010";wait for 10ns;
+
+A<="0011";wait for 10ns;
+wait;end process;
+end Behavioral;

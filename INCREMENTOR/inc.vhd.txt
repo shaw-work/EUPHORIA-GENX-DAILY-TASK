@@ -1,0 +1,72 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date: 17.06.2026 13:20:03
+-- Design Name: 
+-- Module Name: incrementor - Behavioral
+-- Project Name: 
+-- Target Devices: 
+-- Tool Versions: 
+-- Description: 
+-- 
+-- Dependencies: 
+-- 
+-- Revision:
+-- Revision 0.01 - File Created
+-- Additional Comments:
+-- 
+----------------------------------------------------------------------------------
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity incrementor is
+    Port ( A : in STD_LOGIC_VECTOR (3 downto 0);
+           Y : out STD_LOGIC_VECTOR (3 downto 0);
+           Cout : out STD_LOGIC);
+end incrementor;
+
+architecture Behavioral of incrementor is
+component ha is 
+Port ( A : in STD_LOGIC;
+           B : in STD_LOGIC;
+           S : out STD_LOGIC;
+           C : out STD_LOGIC);
+           end component;
+           signal C:STD_LOGIC_VECTOR(3 downto 0);
+           
+           
+begin
+HA0: ha port map(
+    A=>A(0),
+    B=>'1',
+    S=>Y(0),
+    C=>C(0));
+    HA1: ha port map(
+    A=>A(1),
+    B=>C(0),
+    S=>Y(1),
+    C=>C(1));
+    HA2: ha port map(
+    A=>A(2),
+    B=>C(1),
+    S=>Y(2),
+    C=>C(2));
+    HA3: ha port map(
+    A=>A(3),
+    B=>C(2),
+    S=>Y(3),
+    C=>Cout);
+
+end Behavioral;
